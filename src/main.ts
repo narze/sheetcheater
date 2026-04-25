@@ -56,6 +56,8 @@ function toggleEditMode() {
 }
 
 function resetToOriginal() {
+  const confirmed = confirm("Discard all changes and reset to the original file content?");
+  if (!confirmed) return;
   editorText = originalText;
   editor.value = editorText;
   render(editorText);
