@@ -44,19 +44,6 @@ input.md → tokens → JSON → HTML
 - A4: `210mm × 297mm`
 - Print: shadows stripped
 
-## Styling
-
-### Layout #css
-
-- Dynamic `grid-cols-{1|2|3}`
-- `word-break: break-all` on code
-- Tables: `fixed` layout, `0.85em`
-
-### Tags #colors
-
-- 17 pastel pairs
-- Hash-assigned: `hash(label) % 17`
-
 ## Decisions
 
 ### Key #history
