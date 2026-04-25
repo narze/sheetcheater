@@ -119,6 +119,13 @@ ${tailwindCdn}
   box-sizing: border-box;
   background: white;
 }
+code {
+  background: #f3f4f6;
+  padding: 1px 4px;
+  border-radius: 4px;
+  font-size: 0.85em;
+  color: #374151;
+}
 </style>
 </head>
 <body class="bg-gray-100">
