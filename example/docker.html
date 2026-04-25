@@ -10,6 +10,7 @@
 @media print {
   body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .cheatsheet-page { box-shadow: none !important; margin: 0 !important; padding: 0 !important; }
+  article { box-shadow: none !important; }
 }
 .cheatsheet-page {
   width: 210mm;
@@ -41,14 +42,14 @@ code {
         <section class="flex flex-col gap-3">
           <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Images</h2>
           
-            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+            <article class="bg-white border border-gray-200 rounded-lg p-3">
               <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
                 Build & Tag<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-sky-100 text-sky-700">cli</span><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-green-100 text-green-700">image</span></span>
               </h3>
               <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><code>docker build -t myapp:latest .</code> — build image from Dockerfile</li> <li><code>docker tag myapp:latest myapp:v1</code> — tag an image</li> <li><code>docker rmi myapp:v1</code> — remove image</li> </ul></div></div>
             </article>
           
-            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+            <article class="bg-white border border-gray-200 rounded-lg p-3">
               <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
                 Inspect<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-sky-100 text-sky-700">cli</span></span>
               </h3>
@@ -60,14 +61,14 @@ code {
         <section class="flex flex-col gap-3">
           <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Containers</h2>
           
-            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+            <article class="bg-white border border-gray-200 rounded-lg p-3">
               <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
                 Run & Stop<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-sky-100 text-sky-700">cli</span><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-fuchsia-100 text-fuchsia-700">container</span></span>
               </h3>
               <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><code>docker run -d -p 80:80 nginx</code> — run detached with port mapping</li> <li><code>docker stop &lt;id&gt;</code> — stop container</li> <li><code>docker rm &lt;id&gt;</code> — remove stopped container</li> <li><code>docker ps -a</code> — list all containers</li> </ul></div></div>
             </article>
           
-            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+            <article class="bg-white border border-gray-200 rounded-lg p-3">
               <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
                 Exec & Logs<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-sky-100 text-sky-700">cli</span></span>
               </h3>
@@ -79,14 +80,14 @@ code {
         <section class="flex flex-col gap-3">
           <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Compose</h2>
           
-            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+            <article class="bg-white border border-gray-200 rounded-lg p-3">
               <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
                 Lifecycle<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-sky-100 text-sky-700">cli</span><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-emerald-100 text-emerald-700">compose</span></span>
               </h3>
               <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><code>docker compose up -d</code> — start services in background</li> <li><code>docker compose down</code> — stop and remove</li> <li><code>docker compose build</code> — rebuild images</li> <li><code>docker compose logs -f</code> — follow all service logs</li> </ul></div></div>
             </article>
           
-            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+            <article class="bg-white border border-gray-200 rounded-lg p-3">
               <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
                 Shortcuts<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-sky-100 text-sky-700">cli</span></span>
               </h3>

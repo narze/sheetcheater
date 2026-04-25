@@ -65,7 +65,7 @@ export function renderCheatsheet(cheatsheet: Cheatsheet): string {
           const cardTagsHtml = renderInlineTags(card.tags);
 
           return `
-            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+            <article class="bg-white border border-gray-200 rounded-lg p-3">
               <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
                 ${card.title}${cardTagsHtml}
               </h3>
@@ -110,6 +110,7 @@ ${tailwindCdn}
 @media print {
   body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .cheatsheet-page { box-shadow: none !important; margin: 0 !important; padding: 0 !important; }
+  article { box-shadow: none !important; }
 }
 .cheatsheet-page {
   width: 210mm;

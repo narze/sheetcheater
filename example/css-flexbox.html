@@ -10,6 +10,7 @@
 @media print {
   body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .cheatsheet-page { box-shadow: none !important; margin: 0 !important; padding: 0 !important; }
+  article { box-shadow: none !important; }
 }
 .cheatsheet-page {
   width: 210mm;
@@ -41,14 +42,14 @@ code {
         <section class="flex flex-col gap-3">
           <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Flexbox</h2>
           
-            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+            <article class="bg-white border border-gray-200 rounded-lg p-3">
               <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
                 Container<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-pink-100 text-pink-700">layout</span><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-teal-100 text-teal-700">flex</span></span>
               </h3>
               <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><code>display: flex</code> — enable flexbox</li> <li><code>flex-direction: row | column</code> — main axis direction</li> <li><code>justify-content: center</code> — align along main axis</li> <li><code>align-items: center</code> — align along cross axis</li> <li><code>gap: 1rem</code> — spacing between items</li> <li><code>flex-wrap: wrap</code> — allow wrapping</li> </ul></div></div>
             </article>
           
-            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+            <article class="bg-white border border-gray-200 rounded-lg p-3">
               <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
                 Items<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-pink-100 text-pink-700">layout</span></span>
               </h3>
@@ -60,14 +61,14 @@ code {
         <section class="flex flex-col gap-3">
           <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Grid</h2>
           
-            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+            <article class="bg-white border border-gray-200 rounded-lg p-3">
               <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
                 Container<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-pink-100 text-pink-700">layout</span><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-amber-100 text-amber-700">grid</span></span>
               </h3>
               <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><code>display: grid</code> — enable grid</li> <li><code>grid-template-columns: 1fr 1fr</code> — two equal columns</li> <li><code>grid-template-rows: auto 1fr</code> — row sizing</li> <li><code>gap: 1rem</code> — cell spacing</li> <li><code>grid-template-areas</code> — named template layout</li> </ul></div></div>
             </article>
           
-            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+            <article class="bg-white border border-gray-200 rounded-lg p-3">
               <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
                 Items<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-pink-100 text-pink-700">layout</span></span>
               </h3>

@@ -10,6 +10,7 @@
 @media print {
   body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .cheatsheet-page { box-shadow: none !important; margin: 0 !important; padding: 0 !important; }
+  article { box-shadow: none !important; }
 }
 .cheatsheet-page {
   width: 210mm;
@@ -41,14 +42,14 @@ code {
         <section class="flex flex-col gap-3">
           <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Scripts</h2>
           
-            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+            <article class="bg-white border border-gray-200 rounded-lg p-3">
               <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
                 Run<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-sky-100 text-sky-700">cli</span><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-cyan-100 text-cyan-700">basics</span></span>
               </h3>
               <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><code>bun run dev</code> — run dev script from package.json</li> <li><code>bun run src/cli.ts</code> — run TypeScript directly</li> <li><code>bun --watch src/index.ts</code> — run with watch mode</li> <li><code>bun --hot src/index.ts</code> — hot reload</li> </ul></div></div>
             </article>
           
-            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+            <article class="bg-white border border-gray-200 rounded-lg p-3">
               <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
                 Install<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-sky-100 text-sky-700">cli</span></span>
               </h3>
@@ -60,7 +61,7 @@ code {
         <section class="flex flex-col gap-3">
           <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Testing</h2>
           
-            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+            <article class="bg-white border border-gray-200 rounded-lg p-3">
               <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
                 Runner<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-purple-100 text-purple-700">test</span></span>
               </h3>
@@ -72,14 +73,14 @@ code {
         <section class="flex flex-col gap-3">
           <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Bundler</h2>
           
-            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+            <article class="bg-white border border-gray-200 rounded-lg p-3">
               <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
                 Build<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-sky-100 text-sky-700">cli</span><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-sky-100 text-sky-700">build</span></span>
               </h3>
               <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><code>bun build src/index.ts --outdir dist</code> — bundle to directory</li> <li><code>bun build src/index.ts --outfile dist/bundle.js</code> — single file</li> <li><code>bun build --target node</code> — target Node.js</li> <li><code>bun build --target bun</code> — target Bun runtime</li> </ul></div></div>
             </article>
           
-            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+            <article class="bg-white border border-gray-200 rounded-lg p-3">
               <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
                 Flags<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-sky-100 text-sky-700">cli</span></span>
               </h3>
