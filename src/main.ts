@@ -3,8 +3,9 @@ import { renderCheatsheet } from "./renderer.js";
 import "./style.css";
 import mdText from "../cheatsheet.md?raw";
 
+const STORAGE_KEY = "sheetcheater-draft";
 const originalText = mdText;
-let editorText = originalText;
+let editorText = localStorage.getItem(STORAGE_KEY) ?? originalText;
 let isEditMode = false;
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
@@ -14,6 +15,18 @@ const editor = document.getElementById("editor") as HTMLTextAreaElement;
 const editToggle = document.getElementById("edit-toggle")!;
 const resetBtn = document.getElementById("reset-btn")!;
 const dropHint = document.getElementById("drop-hint")!;
+
+function saveDraft() {
+  localStorage.setItem(STORAGE_KEY, editorText);
+}
+
+function clearDraft() {
+  localStorage.removeItem(STORAGE_KEY);
+}
+
+function hasDraft() {
+  return localStorage.getItem(STORAGE_KEY) !== null;
+}
 
 function render(text: string) {
   const cheatsheet = parseCheatsheet(text);
@@ -44,7 +57,7 @@ function toggleEditMode() {
     previewPane.classList.add("with-editor");
     editToggle.textContent = "Close";
     resetBtn.style.display = "inline-block";
-    dropHint.textContent = "Editing in-memory — refresh page to restore file";
+    dropHint.textContent = "Editing in-memory — click Reset to restore file";
     editor.focus();
   } else {
     editorPane.style.display = "none";
@@ -58,6 +71,7 @@ function toggleEditMode() {
 function resetToOriginal() {
   const confirmed = confirm("Discard all changes and reset to the original file content?");
   if (!confirmed) return;
+  clearDraft();
   editorText = originalText;
   editor.value = editorText;
   render(editorText);
@@ -68,6 +82,7 @@ function onEditorInput() {
   editorText = editor.value;
   clearTimeout(debounceTimer);
   debounceTimer = setTimeout(() => {
+    saveDraft();
     render(editorText);
   }, 100);
 }
@@ -90,6 +105,7 @@ function handleDrop(e: DragEvent) {
     const text = event.target?.result as string;
     if (text) {
       editorText = text;
+      saveDraft();
       if (!isEditMode) {
         toggleEditMode();
       } else {
@@ -120,12 +136,12 @@ editToggle.addEventListener("click", toggleEditMode);
 resetBtn.addEventListener("click", resetToOriginal);
 editor.addEventListener("input", onEditorInput);
 
-render(originalText);
+render(editorText);
 setupDragAndDrop();
 
 if (import.meta.hot) {
   import.meta.hot.accept("../cheatsheet.md?raw", (newModule) => {
-    if (newModule && !isEditMode) {
+    if (newModule && !isEditMode && !hasDraft()) {
       editorText = newModule.default;
       render(editorText);
     }
