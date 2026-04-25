@@ -1,12 +1,13 @@
+#!/usr/bin/env node
 import { readFileSync, writeFileSync } from "node:fs";
 import { parseCheatsheet } from "./parser.js";
 import { renderFullPage } from "./renderer.js";
 
 const inputPath = process.argv[2];
-const outputPath = process.argv[3] || "cheatsheet.html";
+const outputPath = process.argv[3] || "output.html";
 
 if (!inputPath) {
-  console.error("Usage: node cli.js <input.md> [output.html]");
+  console.error("Usage: sheetcheater <input.md> [output.html]");
   process.exit(1);
 }
 

@@ -1,11 +1,17 @@
 {
   "name": "sheetcheater",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.0.1-beta.0",
   "type": "module",
+  "bin": {
+    "sheetcheater": "dist/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vp dev",
-    "build": "tsc && vp build",
+    "build": "tsc && vp build && npm run build:cli",
+    "build:cli": "tsc -p tsconfig.cli.json && chmod +x dist/cli.js",
     "preview": "vp preview",
     "cli": "bun run src/cli.ts"
   },

@@ -9,8 +9,9 @@ This project uses **Vite+** with **Bun** as the runtime and package manager.
 - `vp build` — type-check and build for production
 - `vp preview` — preview production build
 - `vp check` — run format, lint, and type checks
-- `bun run cheatsheet:build` — generate standalone HTML from markdown
-- `bun run src/cli.ts <input.md> [output.html]` — run CLI directly
+- `bun run src/cli.ts <input.md> [output.html]` — run CLI directly (Bun only)
+- `npx sheetcheater <input.md> [output.html]` — run CLI via npx (Node, after publish or local build)
+- `bun run build:cli` — compile CLI to `dist/` for publishing
 
 ## Stack
 

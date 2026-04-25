@@ -29,6 +29,8 @@ Open `http://localhost:5173`. Click **Edit** to open the split-pane editor.
 
 ```bash
 bun run src/cli.ts input.md output.html
+# or via npx
+npx sheetcheater input.md output.html
 ```
 
 The output is a self-contained HTML file with Tailwind CDN.
@@ -144,6 +146,8 @@ vp check
 
 # Generate cheatsheet HTML
 bun run src/cli.ts cheatsheet.md dist/cheatsheet.html
+# or via npx
+npx sheetcheater cheatsheet.md dist/cheatsheet.html
 ```
 
 ### Project Structure
