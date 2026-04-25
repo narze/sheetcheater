@@ -1,7 +1,7 @@
 import { parseCheatsheet } from "./parser.js";
 import { renderCheatsheet } from "./renderer.js";
 import "./style.css";
-import mdText from "../cheatsheet.md?raw";
+import mdText from "../public/git.md?raw";
 
 const STORAGE_KEY = "sheetcheater-draft";
 const originalText = mdText;
@@ -142,7 +142,7 @@ render(editorText);
 setupDragAndDrop();
 
 if (import.meta.hot) {
-  import.meta.hot.accept("../cheatsheet.md?raw", (newModule) => {
+  import.meta.hot.accept("../public/git.md?raw", (newModule) => {
     if (newModule && !isEditMode && !hasDraft()) {
       editorText = newModule.default;
       render(editorText);
