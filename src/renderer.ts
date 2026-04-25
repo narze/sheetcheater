@@ -89,7 +89,7 @@ export function renderCheatsheet(cheatsheet: Cheatsheet): string {
       <header class="mb-4">
         <h1 class="text-2xl font-bold text-gray-900">${cheatsheet.title}</h1>
       </header>
-      <div class="grid grid-cols-3 gap-4">${columnsHtml}</div>
+      <div class="grid grid-cols-${Math.min(cheatsheet.columns.length, 3)} gap-4">${columnsHtml}</div>
     </div>
   `;
 }
