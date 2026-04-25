@@ -14,6 +14,7 @@ const previewPane = document.getElementById("preview-pane")!;
 const editor = document.getElementById("editor") as HTMLTextAreaElement;
 const editToggle = document.getElementById("edit-toggle")!;
 const resetBtn = document.getElementById("reset-btn")!;
+const printBtn = document.getElementById("print-btn")!;
 const dropHint = document.getElementById("drop-hint")!;
 
 function saveDraft() {
@@ -134,6 +135,7 @@ function setupDragAndDrop() {
 
 editToggle.addEventListener("click", toggleEditMode);
 resetBtn.addEventListener("click", resetToOriginal);
+printBtn.addEventListener("click", () => window.print());
 editor.addEventListener("input", onEditorInput);
 
 render(editorText);
