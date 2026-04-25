@@ -26,3 +26,7 @@ This project uses **Vite+** with **Bun** as the runtime and package manager.
 - Use `vp` for package management and Vite+ built-in commands (`vp dev`, `vp build`, `vp check`).
 - Use `bun run <script>` or `bun run src/cli.ts` for TypeScript execution — Bun runs TS natively.
 - Import from `vite-plus` in config files.
+- After modifying renderer/parser/cli code, run `bun run build:cli` and regenerate all example HTMLs:
+  ```bash
+  bun run build:cli && for f in example/*.md; do node dist/cli.js "$f" "${f%.md}.html"; done
+  ```
