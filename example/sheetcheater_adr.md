@@ -1,177 +1,76 @@
 # ADR: SheetCheater Architecture
 
-## Overview #architecture #product
+## Product #architecture
 
-### What is SheetCheater? #basics
+### What #basics
 
-A markdown-to-A4-cheatsheet generator that produces clean, printable 3-column HTML cheatsheets with auto-colored tag pills.
+Markdown → A4 cheatsheet generator. 3-column HTML, auto-colored tags, print-optimized.
 
-### Core Philosophy #principles
+### Philosophy #principles
 
-- **Print-first**: Every design decision optimized for A4 PDF output
-- **Convention over configuration**: Rigid markdown structure guarantees consistent layout
-- **Zero dependencies for users**: Self-contained HTML output with Tailwind CDN
-- **Fast dev loop**: Bun native TypeScript, no transpilation during development
+- **Print-first** — A4 PDF output drives all design
+- **Convention over config** — rigid `#`/`##`/`###` hierarchy
+- **Zero deps** — self-contained HTML with Tailwind CDN
+- **Fast dev** — Bun native TS, no transpile
 
-## Technology Stack #stack
+## Stack #toolchain
 
-### Runtime & Build #toolchain
+| Layer | Choice | Why |
+|-------|--------|-----|
+| Runtime | Bun | Native TS, fast CLI |
+| Bundler | Vite | HMR, ESM, Vite+ |
+| Styling | Tailwind v4 | CDN-friendly, utilities |
+| Markdown | markdown-it | Token-based, extensible |
+| Language | TypeScript | Types without runtime cost |
 
-| Layer | Choice | Rationale |
-|-------|--------|-----------|
-| Runtime | **Bun** | Native TypeScript, fast execution, single binary |
-| Bundler | **Vite** | Fast HMR, modern ESM, Vite+ ecosystem |
-| Styling | **Tailwind CSS v4** | Utility-first, CDN-friendly, small output |
-| Markdown | **markdown-it** | Token-based parsing, extensible, battle-tested |
-| Language | **TypeScript** | Type safety without runtime overhead |
-
-### Why Not Node + tsx? #decision #trade-offs
-
-- Bun runs TypeScript natively — no `tsx` or `ts-node` dependency
-- Faster cold starts for CLI execution
-- Single `bun.lock` for deterministic installs
-
-**Trade-off**: Users need Bun for dev; compiled CLI works on Node for end users.
-
-## Data Pipeline #parser #renderer
-
-### Markdown → Tokens → JSON → HTML
+## Pipeline #parser #renderer
 
 ```
-input.md
-  → markdown-it tokens (heading_open, inline, fence, etc.)
-    → parseCheatsheet() → Cheatsheet { title, columns[], cards[], tags[] }
-      → renderCheatsheet() → HTML string with Tailwind classes
-        → renderFullPage() → Self-contained HTML file
+input.md → markdown-it tokens → parseCheatsheet() → JSON → renderCheatsheet() → HTML
 ```
 
-### Parser Design #parser
+### Parser
 
-- **Token-based**: Uses `markdown-it.parse()` instead of regex for reliability
-- **Heading-driven**: `#` → title, `##` → column, `###` → card, `####+` → bold paragraph
-- **Tag extraction**: Regex `#tag-name` extracted from inline token content
-- **Block rendering**: Non-heading tokens rendered via `md.renderer.render()`
+- Token-based (`markdown-it.parse()`)
+- `#` title, `##` column, `###` card, `####+` bold
+- `#tag-name` extracted via regex
 
-### Renderer Design #renderer
+### Renderer
 
-- **Pure functions**: `renderCheatsheet()` + `renderFullPage()` — no side effects
-- **Tailwind CDN**: Output HTML includes `<script src="https://cdn.tailwindcss.com">`
-- **A4 optimization**: `@page { size: A4 }` + `.cheatsheet-page { width: 210mm }`
-- **Print overrides**: `@media print` strips shadows, forces exact colors
+- Pure functions, no side effects
+- Tailwind CDN inlined
+- A4: `210mm × 297mm`, `@page { margin: 0 }`
+- Print: shadows stripped, exact colors forced
 
-## Markdown Convention #convention #schema
+## Convention #schema
 
-### Rigid Hierarchy
+| Markdown | Role | Max |
+|----------|------|-----|
+| `# Title` | Page heading | 1 |
+| `## Section` | Column | 3 |
+| `### Card` | Content block | ∞ |
+| `#tag-name` | Pill badge | ∞ |
 
-| Element | Markdown | Role | Max |
-|---------|----------|------|-----|
-| Page Title | `# Title` | Cheatsheet heading | 1 |
-| Column | `## Section` | Vertical column | 3 |
-| Card | `### Card Title` | Bordered content block | ∞ |
-| Tag | `#tag-name` | Inline pill badge | ∞ |
+## Styling #tailwind
 
-### Why Rigid? #decision #trade-offs
+- Dynamic grid: `grid-cols-{1|2|3}` based on column count
+- 17 pastel tag colors, hash-assigned
+- `word-break: break-all` on code/pre
+- Tables: `table-layout: fixed`, `font-size: 0.85em`
 
-**Pros:**
-- Guaranteed consistent layout every time
-- Parser stays simple (no config, no ambiguity)
-- Users can't break the layout
+## Distribution #build #npm
 
-**Cons:**
-- No custom layouts (no 2-column cards, no spanning)
-- No nested sections beyond column > card
-- Learning curve for new users
+| Target | Tool | Output |
+|--------|------|--------|
+| Dev | Vite | `dist/` bundle |
+| CLI | tsc | `dist/cli.js` |
+| Publish | npm | `files: ["dist"]` |
 
-## Styling Architecture #styling #tailwind
+## Key Decisions #history
 
-### Print-First CSS
-
-```
-.cheatsheet-page {
-  width: 210mm;
-  min-height: 297mm;
-  padding: 10mm;
-  background: white;
-}
-```
-
-### Dynamic Grid Columns
-
-- 1 column → `grid-cols-1`
-- 2 columns → `grid-cols-2`
-- 3 columns → `grid-cols-3`
-
-Prevents empty space when content has fewer than 3 columns.
-
-### Tag Color System
-
-- 17 pastel color pairs (bg + text)
-- Hash-based assignment: `hashString(label) % 17`
-- Consistent per tag across all cheatsheets
-
-## Application Modes #runtime
-
-### 1. Dev Server (Browser Editor)
-
-- **Entry**: `src/main.ts`
-- **Features**: Split-pane editor, live preview, drag-and-drop, localStorage persistence
-- **Use case**: Authors writing and iterating on cheatsheets
-
-### 2. CLI (Static HTML)
-
-- **Entry**: `src/cli.ts`
-- **Output**: Self-contained HTML file
-- **Use case**: CI/CD, batch generation, end users
-
-### 3. Web App (Future)
-
-- **URL**: sheetcheater.narze.live
-- **Same code**: Parser + renderer shared between all modes
-
-## State Management #state
-
-### In-Memory Editing
-
-- No database, no backend
-- `localStorage` persists markdown draft across refreshes
-- Reset button restores original file content
-- Overflow warning: `page.scrollHeight > 1123px` (A4 at 96dpi)
-
-## Build & Distribution #build #npm
-
-### Compilation Strategy
-
-| Target | Input | Output | Tool |
-|--------|-------|--------|------|
-| Dev server | `src/main.ts` | `dist/` (bundled) | Vite |
-| CLI | `src/cli.ts` | `dist/cli.js` | tsc |
-| npm package | `dist/` | Registry | npm publish |
-
-### Why Two Build Paths? #decision
-
-- Vite bundles the dev app (tree-shaking, HMR, assets)
-- tsc compiles CLI to plain JS (Node compatible, no bundler overhead)
-- `files: ["dist"]` in package.json keeps npm package lean
-
-## Decisions Log #history
-
-| Version | Decision | Impact |
-|---------|----------|--------|
-| v0.1.0 | Compile CLI to `dist/` | `npx sheetcheater` works |
-| v0.1.0 | Dynamic grid columns | No empty space for 1-2 columns |
-| v0.1.0 | Remove `shadow-sm` from cards | Clean PDF borders |
-| v0.1.0 | `@page { margin: 0 }` | No right-edge clipping |
-| v0.1.1 | Gray background for `<code>` | Better inline code distinction |
-
-## Status
-
-**Active** — architecture stable since v0.1.1
-
-## References
-
-- `src/parser.ts` — Markdown → JSON
-- `src/renderer.ts` — JSON → HTML
-- `src/types.ts` — TypeScript interfaces
-- `src/cli.ts` — CLI entry
-- `src/main.ts` — Dev server entry
-- `package.json` — Dependencies & scripts
+| Version | Decision |
+|---------|----------|
+| v0.1.0 | Compile CLI to `dist/` for `npx sheetcheater` |
+| v0.1.0 | Dynamic grid columns (no empty space) |
+| v0.1.0 | Remove shadows, `@page { margin: 0 }` |
+| v0.1.1 | Gray `<code>` bg, print-safe overflow handling |

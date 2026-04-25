@@ -63,192 +63,65 @@ th {
       </header>
       <div class="grid grid-cols-3 gap-4">
         <section class="flex flex-col gap-3">
-          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Overview</h2>
+          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Product</h2>
           
             <article class="bg-white border border-gray-200 rounded-lg p-3">
               <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
-                What is SheetCheater?<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-cyan-100 text-cyan-700">basics</span></span>
+                What<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-cyan-100 text-cyan-700">basics</span></span>
               </h3>
-              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><p>A markdown-to-A4-cheatsheet generator that produces clean, printable 3-column HTML cheatsheets with auto-colored tag pills.</p></div></div>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><p>Markdown → A4 cheatsheet generator. 3-column HTML, auto-colored tags, print-optimized.</p></div></div>
             </article>
           
             <article class="bg-white border border-gray-200 rounded-lg p-3">
               <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
-                Core Philosophy<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-pink-100 text-pink-700">principles</span></span>
+                Philosophy<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-pink-100 text-pink-700">principles</span></span>
               </h3>
-              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><strong>Print-first</strong>: Every design decision optimized for A4 PDF output</li> <li><strong>Convention over configuration</strong>: Rigid markdown structure guarantees consistent layout</li> <li><strong>Zero dependencies for users</strong>: Self-contained HTML output with Tailwind CDN</li> <li><strong>Fast dev loop</strong>: Bun native TypeScript, no transpilation during development</li> </ul></div></div>
-            </article>
-          
-        </section>
-      
-        <section class="flex flex-col gap-3">
-          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Technology Stack</h2>
-          
-            <article class="bg-white border border-gray-200 rounded-lg p-3">
-              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
-                Runtime & Build<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-pink-100 text-pink-700">toolchain</span></span>
-              </h3>
-              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><table> <thead> <tr> <th>Layer</th> <th>Choice</th> <th>Rationale</th> </tr> </thead> <tbody> <tr> <td>Runtime</td> <td><strong>Bun</strong></td> <td>Native TypeScript, fast execution, single binary</td> </tr> <tr> <td>Bundler</td> <td><strong>Vite</strong></td> <td>Fast HMR, modern ESM, Vite+ ecosystem</td> </tr> <tr> <td>Styling</td> <td><strong>Tailwind CSS v4</strong></td> <td>Utility-first, CDN-friendly, small output</td> </tr> <tr> <td>Markdown</td> <td><strong>markdown-it</strong></td> <td>Token-based parsing, extensible, battle-tested</td> </tr> <tr> <td>Language</td> <td><strong>TypeScript</strong></td> <td>Type safety without runtime overhead</td> </tr> </tbody> </table></div></div>
-            </article>
-          
-            <article class="bg-white border border-gray-200 rounded-lg p-3">
-              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
-                Why Not Node + tsx?<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-cyan-100 text-cyan-700">decision</span><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-indigo-100 text-indigo-700">trade-offs</span></span>
-              </h3>
-              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li>Bun runs TypeScript natively — no <code>tsx</code> or <code>ts-node</code> dependency</li> <li>Faster cold starts for CLI execution</li> <li>Single <code>bun.lock</code> for deterministic installs</li> </ul></div><div class="text-sm text-gray-700 leading-relaxed"><p><strong>Trade-off</strong>: Users need Bun for dev; compiled CLI works on Node for end users.</p></div></div>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><strong>Print-first</strong> — A4 PDF output drives all design</li> <li><strong>Convention over config</strong> — rigid <code>#</code>/<code>##</code>/<code>###</code> hierarchy</li> <li><strong>Zero deps</strong> — self-contained HTML with Tailwind CDN</li> <li><strong>Fast dev</strong> — Bun native TS, no transpile</li> </ul></div></div>
             </article>
           
         </section>
       
         <section class="flex flex-col gap-3">
-          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Data Pipeline</h2>
+          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Stack</h2>
+          
+        </section>
+      
+        <section class="flex flex-col gap-3">
+          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Pipeline</h2>
           
             <article class="bg-white border border-gray-200 rounded-lg p-3">
               <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
-                Markdown → Tokens → JSON → HTML
+                Parser
               </h3>
-              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><pre class="bg-gray-50 border border-gray-200 rounded p-2 overflow-x-auto text-xs mt-1"><code>input.md
-  → markdown-it tokens (heading_open, inline, fence, etc.)
-    → parseCheatsheet() → Cheatsheet { title, columns[], cards[], tags[] }
-      → renderCheatsheet() → HTML string with Tailwind classes
-        → renderFullPage() → Self-contained HTML file</code></pre></div></div>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li>Token-based (<code>markdown-it.parse()</code>)</li> <li><code>#</code> title, <code>##</code> column, <code>###</code> card, <code>####+</code> bold</li> <li><code>#tag-name</code> extracted via regex</li> </ul></div></div>
             </article>
           
             <article class="bg-white border border-gray-200 rounded-lg p-3">
               <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
-                Parser Design<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-amber-100 text-amber-700">parser</span></span>
+                Renderer
               </h3>
-              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><strong>Token-based</strong>: Uses <code>markdown-it.parse()</code> instead of regex for reliability</li> <li><strong>Heading-driven</strong>: <code>#</code> → title, <code>##</code> → column, <code>###</code> → card, <code>####+</code> → bold paragraph</li> <li><strong>Tag extraction</strong>: Regex <code>#tag-name</code> extracted from inline token content</li> <li><strong>Block rendering</strong>: Non-heading tokens rendered via <code>md.renderer.render()</code></li> </ul></div></div>
-            </article>
-          
-            <article class="bg-white border border-gray-200 rounded-lg p-3">
-              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
-                Renderer Design<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-rose-100 text-rose-700">renderer</span></span>
-              </h3>
-              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><strong>Pure functions</strong>: <code>renderCheatsheet()</code> + <code>renderFullPage()</code> — no side effects</li> <li><strong>Tailwind CDN</strong>: Output HTML includes <code>&lt;script src=&quot;https://cdn.tailwindcss.com&quot;&gt;</code></li> <li><strong>A4 optimization</strong>: <code>@page { size: A4 }</code> + <code>.cheatsheet-page { width: 210mm }</code></li> <li><strong>Print overrides</strong>: <code>@media print</code> strips shadows, forces exact colors</li> </ul></div></div>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li>Pure functions, no side effects</li> <li>Tailwind CDN inlined</li> <li>A4: <code>210mm × 297mm</code>, <code>@page { margin: 0 }</code></li> <li>Print: shadows stripped, exact colors forced</li> </ul></div></div>
             </article>
           
         </section>
       
         <section class="flex flex-col gap-3">
-          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Markdown Convention</h2>
-          
-            <article class="bg-white border border-gray-200 rounded-lg p-3">
-              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
-                Rigid Hierarchy
-              </h3>
-              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><table> <thead> <tr> <th>Element</th> <th>Markdown</th> <th>Role</th> <th>Max</th> </tr> </thead> <tbody> <tr> <td>Page Title</td> <td><code># Title</code></td> <td>Cheatsheet heading</td> <td>1</td> </tr> <tr> <td>Column</td> <td><code>## Section</code></td> <td>Vertical column</td> <td>3</td> </tr> <tr> <td>Card</td> <td><code>### Card Title</code></td> <td>Bordered content block</td> <td>∞</td> </tr> <tr> <td>Tag</td> <td><code>#tag-name</code></td> <td>Inline pill badge</td> <td>∞</td> </tr> </tbody> </table></div></div>
-            </article>
-          
-            <article class="bg-white border border-gray-200 rounded-lg p-3">
-              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
-                Why Rigid?<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-cyan-100 text-cyan-700">decision</span><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-indigo-100 text-indigo-700">trade-offs</span></span>
-              </h3>
-              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><p><strong>Pros:</strong></p></div><div class="text-sm text-gray-700 leading-relaxed"><ul> <li>Guaranteed consistent layout every time</li> <li>Parser stays simple (no config, no ambiguity)</li> <li>Users can't break the layout</li> </ul></div><div class="text-sm text-gray-700 leading-relaxed"><p><strong>Cons:</strong></p></div><div class="text-sm text-gray-700 leading-relaxed"><ul> <li>No custom layouts (no 2-column cards, no spanning)</li> <li>No nested sections beyond column &gt; card</li> <li>Learning curve for new users</li> </ul></div></div>
-            </article>
+          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Convention</h2>
           
         </section>
       
         <section class="flex flex-col gap-3">
-          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Styling Architecture</h2>
-          
-            <article class="bg-white border border-gray-200 rounded-lg p-3">
-              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
-                Print-First CSS
-              </h3>
-              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><pre class="bg-gray-50 border border-gray-200 rounded p-2 overflow-x-auto text-xs mt-1"><code>.cheatsheet-page {
-  width: 210mm;
-  min-height: 297mm;
-  padding: 10mm;
-  background: white;
-}</code></pre></div></div>
-            </article>
-          
-            <article class="bg-white border border-gray-200 rounded-lg p-3">
-              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
-                Dynamic Grid Columns
-              </h3>
-              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li>1 column → <code>grid-cols-1</code></li> <li>2 columns → <code>grid-cols-2</code></li> <li>3 columns → <code>grid-cols-3</code></li> </ul></div><div class="text-sm text-gray-700 leading-relaxed"><p>Prevents empty space when content has fewer than 3 columns.</p></div></div>
-            </article>
-          
-            <article class="bg-white border border-gray-200 rounded-lg p-3">
-              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
-                Tag Color System
-              </h3>
-              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li>17 pastel color pairs (bg + text)</li> <li>Hash-based assignment: <code>hashString(label) % 17</code></li> <li>Consistent per tag across all cheatsheets</li> </ul></div></div>
-            </article>
+          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Styling</h2>
           
         </section>
       
         <section class="flex flex-col gap-3">
-          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Application Modes</h2>
-          
-            <article class="bg-white border border-gray-200 rounded-lg p-3">
-              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
-                1. Dev Server (Browser Editor)
-              </h3>
-              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><strong>Entry</strong>: <code>src/main.ts</code></li> <li><strong>Features</strong>: Split-pane editor, live preview, drag-and-drop, localStorage persistence</li> <li><strong>Use case</strong>: Authors writing and iterating on cheatsheets</li> </ul></div></div>
-            </article>
-          
-            <article class="bg-white border border-gray-200 rounded-lg p-3">
-              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
-                2. CLI (Static HTML)
-              </h3>
-              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><strong>Entry</strong>: <code>src/cli.ts</code></li> <li><strong>Output</strong>: Self-contained HTML file</li> <li><strong>Use case</strong>: CI/CD, batch generation, end users</li> </ul></div></div>
-            </article>
-          
-            <article class="bg-white border border-gray-200 rounded-lg p-3">
-              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
-                3. Web App (Future)
-              </h3>
-              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><strong>URL</strong>: sheetcheater.narze.live</li> <li><strong>Same code</strong>: Parser + renderer shared between all modes</li> </ul></div></div>
-            </article>
+          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Distribution</h2>
           
         </section>
       
         <section class="flex flex-col gap-3">
-          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">State Management</h2>
-          
-            <article class="bg-white border border-gray-200 rounded-lg p-3">
-              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
-                In-Memory Editing
-              </h3>
-              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li>No database, no backend</li> <li><code>localStorage</code> persists markdown draft across refreshes</li> <li>Reset button restores original file content</li> <li>Overflow warning: <code>page.scrollHeight &gt; 1123px</code> (A4 at 96dpi)</li> </ul></div></div>
-            </article>
-          
-        </section>
-      
-        <section class="flex flex-col gap-3">
-          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Build & Distribution</h2>
-          
-            <article class="bg-white border border-gray-200 rounded-lg p-3">
-              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
-                Compilation Strategy
-              </h3>
-              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><table> <thead> <tr> <th>Target</th> <th>Input</th> <th>Output</th> <th>Tool</th> </tr> </thead> <tbody> <tr> <td>Dev server</td> <td><code>src/main.ts</code></td> <td><code>dist/</code> (bundled)</td> <td>Vite</td> </tr> <tr> <td>CLI</td> <td><code>src/cli.ts</code></td> <td><code>dist/cli.js</code></td> <td>tsc</td> </tr> <tr> <td>npm package</td> <td><code>dist/</code></td> <td>Registry</td> <td>npm publish</td> </tr> </tbody> </table></div></div>
-            </article>
-          
-            <article class="bg-white border border-gray-200 rounded-lg p-3">
-              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
-                Why Two Build Paths?<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-cyan-100 text-cyan-700">decision</span></span>
-              </h3>
-              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li>Vite bundles the dev app (tree-shaking, HMR, assets)</li> <li>tsc compiles CLI to plain JS (Node compatible, no bundler overhead)</li> <li><code>files: [&quot;dist&quot;]</code> in package.json keeps npm package lean</li> </ul></div></div>
-            </article>
-          
-        </section>
-      
-        <section class="flex flex-col gap-3">
-          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Decisions Log</h2>
-          
-        </section>
-      
-        <section class="flex flex-col gap-3">
-          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Status</h2>
-          
-        </section>
-      
-        <section class="flex flex-col gap-3">
-          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">References</h2>
+          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Key Decisions</h2>
           
         </section>
       </div>
