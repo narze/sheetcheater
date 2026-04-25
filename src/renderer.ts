@@ -108,9 +108,35 @@ export function renderCheatsheet(cheatsheet: Cheatsheet): string {
   `;
 }
 
-export function renderFullPage(cheatsheet: Cheatsheet, options: { cdn?: boolean } = {}): string {
+export function renderFullPage(cheatsheet: Cheatsheet, options: { cdn?: boolean; showOverflowWarning?: boolean } = {}): string {
   const body = renderCheatsheet(cheatsheet);
   const tailwindCdn = options.cdn ? `<script src="https://cdn.tailwindcss.com"></script>` : "";
+  const showWarning = options.showOverflowWarning ?? true;
+  const warningHtml = showWarning
+    ? `<div id="overflow-warning" style="display:none;position:fixed;top:0;left:0;right:0;background:#ef4444;color:white;text-align:center;padding:8px;font-size:14px;z-index:50;">
+  Warning: content exceeds one A4 page. Consider removing content.
+</div>`
+    : "";
+  const warningScript = showWarning
+    ? `<script>
+(function() {
+  function checkOverflow() {
+    const page = document.querySelector('.cheatsheet-page');
+    const warning = document.getElementById('overflow-warning');
+    if (!page || !warning) return;
+    const maxHeight = 1123; // ~A4 height at 96dpi
+    if (page.scrollHeight > maxHeight) {
+      warning.style.display = 'block';
+      console.warn('SheetCheater: Content exceeds one A4 page (' + page.scrollHeight + 'px > ' + maxHeight + 'px)');
+    } else {
+      warning.style.display = 'none';
+    }
+  }
+  window.addEventListener('load', checkOverflow);
+  window.addEventListener('resize', checkOverflow);
+})();
+</script>`
+    : "";
 
   return `<!doctype html>
 <html lang="en">
@@ -125,7 +151,6 @@ ${tailwindCdn}
   body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .cheatsheet-page { width: 100% !important; margin: 0 !important; box-shadow: none !important; }
   article { box-shadow: none !important; }
-  #overflow-warning { display: none !important; }
 }
 .cheatsheet-page {
   width: 210mm;
@@ -167,28 +192,9 @@ th {
 </style>
 </head>
 <body class="bg-gray-100">
-<div id="overflow-warning" style="display:none;position:fixed;top:0;left:0;right:0;background:#ef4444;color:white;text-align:center;padding:8px;font-size:14px;z-index:50;">
-  Warning: content exceeds one A4 page. Consider removing content.
-</div>
+${warningHtml}
 ${body}
-<script>
-(function() {
-  function checkOverflow() {
-    const page = document.querySelector('.cheatsheet-page');
-    const warning = document.getElementById('overflow-warning');
-    if (!page || !warning) return;
-    const maxHeight = 1123; // ~A4 height at 96dpi
-    if (page.scrollHeight > maxHeight) {
-      warning.style.display = 'block';
-      console.warn('SheetCheater: Content exceeds one A4 page (' + page.scrollHeight + 'px > ' + maxHeight + 'px)');
-    } else {
-      warning.style.display = 'none';
-    }
-  }
-  window.addEventListener('load', checkOverflow);
-  window.addEventListener('resize', checkOverflow);
-})();
-</script>
+${warningScript}
 </body>
 </html>`;
 }

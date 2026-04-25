@@ -11,7 +11,6 @@
   body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .cheatsheet-page { width: 100% !important; margin: 0 !important; box-shadow: none !important; }
   article { box-shadow: none !important; }
-  #overflow-warning { display: none !important; }
 }
 .cheatsheet-page {
   width: 210mm;
@@ -53,9 +52,7 @@ th {
 </style>
 </head>
 <body class="bg-gray-100">
-<div id="overflow-warning" style="display:none;position:fixed;top:0;left:0;right:0;background:#ef4444;color:white;text-align:center;padding:8px;font-size:14px;z-index:50;">
-  Warning: content exceeds one A4 page. Consider removing content.
-</div>
+
 
     <div class="cheatsheet-page">
       <header class="mb-4">
@@ -72,7 +69,6 @@ th {
               <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul>
 <li><code>git init</code> — initialize local repo</li>
 <li><code>git clone &lt;url&gt;</code> — clone remote repo <span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-rose-100 text-rose-700">web</span></li>
-<li><code>git clone --depth 1 &lt;url&gt;</code> — shallow clone</li>
 </ul>
 </div></div>
             </article>
@@ -83,11 +79,8 @@ th {
               </h3>
               <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul>
 <li><code>git add .</code> — stage all changes</li>
-<li><code>git add -p</code> — stage interactively</li>
 <li><code>git commit -m &quot;msg&quot;</code> — commit staged</li>
-<li><code>git commit --amend</code> — edit last commit</li>
 <li><code>git status</code> — working tree status</li>
-<li><code>git status -sb</code> — short branch status</li>
 </ul>
 </div></div>
             </article>
@@ -103,11 +96,9 @@ th {
               </h3>
               <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul>
 <li><code>git branch</code> — list branches</li>
-<li><code>git branch -a</code> — list all (remote too)</li>
 <li><code>git checkout -b feat</code> — create &amp; switch</li>
 <li><code>git switch -c feat</code> — modern alternative</li>
 <li><code>git branch -d feat</code> — delete branch</li>
-<li><code>git branch -m old new</code> — rename branch</li>
 </ul>
 </div></div>
             </article>
@@ -118,9 +109,7 @@ th {
               </h3>
               <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul>
 <li><code>git merge feat</code> — merge into current</li>
-<li><code>git merge --no-ff feat</code> — always create merge commit</li>
 <li><code>git rebase main</code> — replay commits</li>
-<li><code>git rebase -i HEAD~3</code> — interactive rebase</li>
 <li><code>git merge --abort</code> — cancel merge</li>
 <li><code>git cherry-pick &lt;hash&gt;</code> — apply single commit</li>
 </ul>
@@ -138,11 +127,8 @@ th {
               </h3>
               <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul>
 <li><code>git log --oneline</code> — compact log</li>
-<li><code>git log --graph --oneline --all</code> — visual graph</li>
 <li><code>git diff</code> — unstaged changes</li>
-<li><code>git diff --cached</code> — staged changes</li>
 <li><code>git blame &lt;file&gt;</code> — line annotations</li>
-<li><code>git show &lt;hash&gt;</code> — show commit details</li>
 </ul>
 </div></div>
             </article>
@@ -152,13 +138,10 @@ th {
                 Undo<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-emerald-100 text-emerald-700">advanced-topic</span></span>
               </h3>
               <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul>
-<li><code>git reset HEAD~1</code> — undo last commit (keep changes)</li>
-<li><code>git reset --hard HEAD~1</code> — undo last commit (discard)</li>
+<li><code>git reset HEAD~1</code> — undo last commit</li>
 <li><code>git stash</code> — shelve changes</li>
-<li><code>git stash pop</code> — apply and remove stash</li>
-<li><code>git stash list</code> — list stashes</li>
-<li><code>git restore &lt;file&gt;</code> — discard file changes</li>
-<li><code>git restore --staged &lt;file&gt;</code> — unstage file</li>
+<li><code>git stash pop</code> — apply stash</li>
+<li><code>git restore &lt;file&gt;</code> — discard changes</li>
 </ul>
 </div></div>
             </article>
@@ -174,11 +157,8 @@ th {
               </h3>
               <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul>
 <li><code>git push</code> — push commits</li>
-<li><code>git push -u origin main</code> — push &amp; set upstream</li>
 <li><code>git pull</code> — fetch &amp; merge</li>
-<li><code>git pull --rebase</code> — fetch &amp; rebase</li>
 <li><code>git fetch</code> — download objects</li>
-<li><code>git fetch --prune</code> — fetch &amp; clean refs</li>
 </ul>
 </div></div>
             </article>
@@ -190,7 +170,6 @@ th {
               <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul>
 <li><code>git remote -v</code> — list remotes</li>
 <li><code>git remote add origin &lt;url&gt;</code> — add remote</li>
-<li><code>git branch -vv</code> — show tracking branches</li>
 </ul>
 </div></div>
             </article>
@@ -199,23 +178,6 @@ th {
       </div>
     </div>
   
-<script>
-(function() {
-  function checkOverflow() {
-    const page = document.querySelector('.cheatsheet-page');
-    const warning = document.getElementById('overflow-warning');
-    if (!page || !warning) return;
-    const maxHeight = 1123; // ~A4 height at 96dpi
-    if (page.scrollHeight > maxHeight) {
-      warning.style.display = 'block';
-      console.warn('SheetCheater: Content exceeds one A4 page (' + page.scrollHeight + 'px > ' + maxHeight + 'px)');
-    } else {
-      warning.style.display = 'none';
-    }
-  }
-  window.addEventListener('load', checkOverflow);
-  window.addEventListener('resize', checkOverflow);
-})();
-</script>
+
 </body>
 </html>

@@ -13,7 +13,7 @@ if (!inputPath) {
 
 const mdText = readFileSync(inputPath, "utf-8");
 const cheatsheet = parseCheatsheet(mdText);
-const html = renderFullPage(cheatsheet, { cdn: true });
+const html = renderFullPage(cheatsheet, { cdn: true, showOverflowWarning: false });
 writeFileSync(outputPath, html, "utf-8");
 console.log(`Cheatsheet written to ${outputPath}`);
 
