@@ -11,6 +11,7 @@
   body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .cheatsheet-page { box-shadow: none !important; }
   article { box-shadow: none !important; }
+  #overflow-warning { display: none !important; }
 }
 .cheatsheet-page {
   width: 210mm;
@@ -26,6 +27,28 @@ code {
   border-radius: 4px;
   font-size: 0.85em;
   color: #374151;
+  word-break: break-all;
+}
+pre {
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+table {
+  width: 100%;
+  font-size: 0.85em;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+th, td {
+  padding: 2px 4px;
+  border: 1px solid #e5e7eb;
+  vertical-align: top;
+  word-break: break-word;
+}
+th {
+  background: #f9fafb;
+  font-weight: 600;
 }
 </style>
 </head>
