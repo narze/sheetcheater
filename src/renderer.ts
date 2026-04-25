@@ -109,7 +109,7 @@ ${tailwindCdn}
 @page { size: A4; margin: 0; }
 @media print {
   body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .cheatsheet-page { box-shadow: none !important; }
+  .cheatsheet-page { width: 100% !important; margin: 0 !important; box-shadow: none !important; }
   article { box-shadow: none !important; }
   #overflow-warning { display: none !important; }
 }
