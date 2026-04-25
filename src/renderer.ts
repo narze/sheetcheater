@@ -106,10 +106,10 @@ export function renderFullPage(cheatsheet: Cheatsheet, options: { cdn?: boolean 
 <title>${cheatsheet.title}</title>
 ${tailwindCdn}
 <style>
-@page { size: A4; margin: 10mm; }
+@page { size: A4; margin: 0; }
 @media print {
   body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .cheatsheet-page { box-shadow: none !important; margin: 0 !important; padding: 0 !important; }
+  .cheatsheet-page { box-shadow: none !important; }
   article { box-shadow: none !important; }
 }
 .cheatsheet-page {
