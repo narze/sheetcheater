@@ -1,76 +1,66 @@
-# ADR: SheetCheater Architecture
+# ADR: SheetCheater
 
-## Product #architecture
+## Product
 
 ### What #basics
 
-Markdown → A4 cheatsheet generator. 3-column HTML, auto-colored tags, print-optimized.
+Markdown → A4 cheatsheet. 3-column HTML, auto tags, print-optimized.
 
-### Philosophy #principles
+### Principles #philosophy
 
-- **Print-first** — A4 PDF output drives all design
+- **Print-first** — A4 PDF drives all design
 - **Convention over config** — rigid `#`/`##`/`###` hierarchy
-- **Zero deps** — self-contained HTML with Tailwind CDN
-- **Fast dev** — Bun native TS, no transpile
+- **Zero deps** — self-contained HTML, Tailwind CDN
+- **Fast dev** — Bun native TS
 
-## Stack #toolchain
+## Stack
+
+### Layers #toolchain
 
 | Layer | Choice | Why |
 |-------|--------|-----|
 | Runtime | Bun | Native TS, fast CLI |
-| Bundler | Vite | HMR, ESM, Vite+ |
-| Styling | Tailwind v4 | CDN-friendly, utilities |
-| Markdown | markdown-it | Token-based, extensible |
-| Language | TypeScript | Types without runtime cost |
+| Bundler | Vite | HMR, ESM |
+| Styling | Tailwind v4 | CDN-friendly |
+| Parser | markdown-it | Token-based |
+| Language | TypeScript | Type safety |
 
-## Pipeline #parser #renderer
+## Pipeline
+
+### Flow #data
 
 ```
-input.md → markdown-it tokens → parseCheatsheet() → JSON → renderCheatsheet() → HTML
+input.md → tokens → JSON → HTML
 ```
 
-### Parser
+### Parser #parser
 
-- Token-based (`markdown-it.parse()`)
-- `#` title, `##` column, `###` card, `####+` bold
-- `#tag-name` extracted via regex
+- `#` title, `##` column, `###` card
+- `#tag-name` via regex
 
-### Renderer
+### Renderer #renderer
 
-- Pure functions, no side effects
-- Tailwind CDN inlined
-- A4: `210mm × 297mm`, `@page { margin: 0 }`
-- Print: shadows stripped, exact colors forced
+- Pure functions, Tailwind CDN
+- A4: `210mm × 297mm`
+- Print: shadows stripped
 
-## Convention #schema
+## Styling
 
-| Markdown | Role | Max |
-|----------|------|-----|
-| `# Title` | Page heading | 1 |
-| `## Section` | Column | 3 |
-| `### Card` | Content block | ∞ |
-| `#tag-name` | Pill badge | ∞ |
+### Layout #css
 
-## Styling #tailwind
+- Dynamic `grid-cols-{1|2|3}`
+- `word-break: break-all` on code
+- Tables: `fixed` layout, `0.85em`
 
-- Dynamic grid: `grid-cols-{1|2|3}` based on column count
-- 17 pastel tag colors, hash-assigned
-- `word-break: break-all` on code/pre
-- Tables: `table-layout: fixed`, `font-size: 0.85em`
+### Tags #colors
 
-## Distribution #build #npm
+- 17 pastel pairs
+- Hash-assigned: `hash(label) % 17`
 
-| Target | Tool | Output |
-|--------|------|--------|
-| Dev | Vite | `dist/` bundle |
-| CLI | tsc | `dist/cli.js` |
-| Publish | npm | `files: ["dist"]` |
+## Decisions
 
-## Key Decisions #history
+### Key #history
 
-| Version | Decision |
-|---------|----------|
-| v0.1.0 | Compile CLI to `dist/` for `npx sheetcheater` |
-| v0.1.0 | Dynamic grid columns (no empty space) |
-| v0.1.0 | Remove shadows, `@page { margin: 0 }` |
-| v0.1.1 | Gray `<code>` bg, print-safe overflow handling |
+- **v0.1.0** — Compiled CLI for `npx sheetcheater`
+- **v0.1.0** — Dynamic grid, no shadows
+- **v0.1.1** — Code bg, word-break fixes

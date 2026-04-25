@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ADR: SheetCheater Architecture</title>
+<title>ADR: SheetCheater</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
 @page { size: A4; margin: 0; }
@@ -59,7 +59,7 @@ th {
 
     <div class="cheatsheet-page">
       <header class="mb-4">
-        <h1 class="text-2xl font-bold text-gray-900">ADR: SheetCheater Architecture</h1>
+        <h1 class="text-2xl font-bold text-gray-900">ADR: SheetCheater</h1>
       </header>
       <div class="grid grid-cols-3 gap-4">
         <section class="flex flex-col gap-3">
@@ -69,20 +69,27 @@ th {
               <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
                 What<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-cyan-100 text-cyan-700">basics</span></span>
               </h3>
-              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><p>Markdown → A4 cheatsheet generator. 3-column HTML, auto-colored tags, print-optimized.</p></div></div>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><p>Markdown → A4 cheatsheet. 3-column HTML, auto tags, print-optimized.</p></div></div>
             </article>
           
             <article class="bg-white border border-gray-200 rounded-lg p-3">
               <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
-                Philosophy<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-pink-100 text-pink-700">principles</span></span>
+                Principles<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-blue-100 text-blue-700">philosophy</span></span>
               </h3>
-              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><strong>Print-first</strong> — A4 PDF output drives all design</li> <li><strong>Convention over config</strong> — rigid <code>#</code>/<code>##</code>/<code>###</code> hierarchy</li> <li><strong>Zero deps</strong> — self-contained HTML with Tailwind CDN</li> <li><strong>Fast dev</strong> — Bun native TS, no transpile</li> </ul></div></div>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><strong>Print-first</strong> — A4 PDF drives all design</li> <li><strong>Convention over config</strong> — rigid <code>#</code>/<code>##</code>/<code>###</code> hierarchy</li> <li><strong>Zero deps</strong> — self-contained HTML, Tailwind CDN</li> <li><strong>Fast dev</strong> — Bun native TS</li> </ul></div></div>
             </article>
           
         </section>
       
         <section class="flex flex-col gap-3">
           <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Stack</h2>
+          
+            <article class="bg-white border border-gray-200 rounded-lg p-3">
+              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
+                Layers<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-pink-100 text-pink-700">toolchain</span></span>
+              </h3>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><table> <thead> <tr> <th>Layer</th> <th>Choice</th> <th>Why</th> </tr> </thead> <tbody> <tr> <td>Runtime</td> <td>Bun</td> <td>Native TS, fast CLI</td> </tr> <tr> <td>Bundler</td> <td>Vite</td> <td>HMR, ESM</td> </tr> <tr> <td>Styling</td> <td>Tailwind v4</td> <td>CDN-friendly</td> </tr> <tr> <td>Parser</td> <td>markdown-it</td> <td>Token-based</td> </tr> <tr> <td>Language</td> <td>TypeScript</td> <td>Type safety</td> </tr> </tbody> </table></div></div>
+            </article>
           
         </section>
       
@@ -91,37 +98,55 @@ th {
           
             <article class="bg-white border border-gray-200 rounded-lg p-3">
               <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
-                Parser
+                Flow<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-purple-100 text-purple-700">data</span></span>
               </h3>
-              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li>Token-based (<code>markdown-it.parse()</code>)</li> <li><code>#</code> title, <code>##</code> column, <code>###</code> card, <code>####+</code> bold</li> <li><code>#tag-name</code> extracted via regex</li> </ul></div></div>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><pre class="bg-gray-50 border border-gray-200 rounded p-2 overflow-x-auto text-xs mt-1"><code>input.md → tokens → JSON → HTML</code></pre></div></div>
             </article>
           
             <article class="bg-white border border-gray-200 rounded-lg p-3">
               <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
-                Renderer
+                Parser<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-amber-100 text-amber-700">parser</span></span>
               </h3>
-              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li>Pure functions, no side effects</li> <li>Tailwind CDN inlined</li> <li>A4: <code>210mm × 297mm</code>, <code>@page { margin: 0 }</code></li> <li>Print: shadows stripped, exact colors forced</li> </ul></div></div>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><code>#</code> title, <code>##</code> column, <code>###</code> card</li> <li><code>#tag-name</code> via regex</li> </ul></div></div>
             </article>
           
-        </section>
-      
-        <section class="flex flex-col gap-3">
-          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Convention</h2>
+            <article class="bg-white border border-gray-200 rounded-lg p-3">
+              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
+                Renderer<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-rose-100 text-rose-700">renderer</span></span>
+              </h3>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li>Pure functions, Tailwind CDN</li> <li>A4: <code>210mm × 297mm</code></li> <li>Print: shadows stripped</li> </ul></div></div>
+            </article>
           
         </section>
       
         <section class="flex flex-col gap-3">
           <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Styling</h2>
           
-        </section>
-      
-        <section class="flex flex-col gap-3">
-          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Distribution</h2>
+            <article class="bg-white border border-gray-200 rounded-lg p-3">
+              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
+                Layout<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-pink-100 text-pink-700">css</span></span>
+              </h3>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li>Dynamic <code>grid-cols-{1|2|3}</code></li> <li><code>word-break: break-all</code> on code</li> <li>Tables: <code>fixed</code> layout, <code>0.85em</code></li> </ul></div></div>
+            </article>
+          
+            <article class="bg-white border border-gray-200 rounded-lg p-3">
+              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
+                Tags<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-teal-100 text-teal-700">colors</span></span>
+              </h3>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li>17 pastel pairs</li> <li>Hash-assigned: <code>hash(label) % 17</code></li> </ul></div></div>
+            </article>
           
         </section>
       
         <section class="flex flex-col gap-3">
-          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Key Decisions</h2>
+          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Decisions</h2>
+          
+            <article class="bg-white border border-gray-200 rounded-lg p-3">
+              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
+                Key<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-orange-100 text-orange-700">history</span></span>
+              </h3>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><strong>v0.1.0</strong> — Compiled CLI for <code>npx sheetcheater</code></li> <li><strong>v0.1.0</strong> — Dynamic grid, no shadows</li> <li><strong>v0.1.1</strong> — Code bg, word-break fixes</li> </ul></div></div>
+            </article>
           
         </section>
       </div>
