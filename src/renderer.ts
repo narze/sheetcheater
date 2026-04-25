@@ -50,6 +50,19 @@ function renderBlockTags(tags: Tag[]): string {
   return `<div class="flex flex-wrap gap-1 mt-1">${tags.map(renderTag).join("")}</div>`;
 }
 
+function renderInlineTagsInHtml(html: string): string {
+  // Split by <code> and <pre> blocks to avoid replacing tags inside them
+  const parts = html.split(/(<(?:code|pre)[^>]*>.*?<\/(?:code|pre)>)/gis);
+  return parts
+    .map((part, i) => {
+      if (i % 2 === 1) return part; // Keep code/pre blocks as-is
+      return part.replace(/(^|\s)#([a-z][a-z0-9-]*)/g, (_match, prefix, label) => {
+        return prefix + renderTag({ raw: "#" + label, label });
+      });
+    })
+    .join("");
+}
+
 export function renderCheatsheet(cheatsheet: Cheatsheet): string {
   const columnsHtml = cheatsheet.columns
     .map((column) => {
@@ -57,8 +70,9 @@ export function renderCheatsheet(cheatsheet: Cheatsheet): string {
         .map((card) => {
           const blocksHtml = card.blocks
             .map((block) => {
+              const processedHtml = renderInlineTagsInHtml(block.html);
               const tagsHtml = renderBlockTags(block.tags);
-              return `<div class="text-sm text-gray-700 leading-relaxed">${block.html}${tagsHtml}</div>`;
+              return `<div class="text-sm text-gray-700 leading-relaxed">${processedHtml}${tagsHtml}</div>`;
             })
             .join("");
 

@@ -69,14 +69,25 @@ th {
               <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
                 Select<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-orange-100 text-orange-700">query</span><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-cyan-100 text-cyan-700">basics</span></span>
               </h3>
-              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><code>SELECT * FROM users;</code> — all columns</li> <li><code>SELECT name, email FROM users;</code> — specific columns</li> <li><code>SELECT DISTINCT city FROM users;</code> — unique values</li> <li><code>SELECT * FROM users LIMIT 10;</code> — limit results</li> </ul></div></div>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul>
+<li><code>SELECT * FROM users;</code> — all columns</li>
+<li><code>SELECT name, email FROM users;</code> — specific columns</li>
+<li><code>SELECT DISTINCT city FROM users;</code> — unique values</li>
+<li><code>SELECT * FROM users LIMIT 10;</code> — limit results</li>
+</ul>
+</div></div>
             </article>
           
             <article class="bg-white border border-gray-200 rounded-lg p-3">
               <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
                 Insert & Update<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-orange-100 text-orange-700">query</span></span>
               </h3>
-              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><code>INSERT INTO users (name, email) VALUES ('A', 'a@x.com');</code> — add row</li> <li><code>UPDATE users SET name = 'B' WHERE id = 1;</code> — modify row</li> <li><code>DELETE FROM users WHERE id = 1;</code> — remove row</li> </ul></div></div>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul>
+<li><code>INSERT INTO users (name, email) VALUES ('A', 'a@x.com');</code> — add row</li>
+<li><code>UPDATE users SET name = 'B' WHERE id = 1;</code> — modify row</li>
+<li><code>DELETE FROM users WHERE id = 1;</code> — remove row</li>
+</ul>
+</div></div>
             </article>
           
         </section>
@@ -88,14 +99,25 @@ th {
               <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
                 Where & Order<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-orange-100 text-orange-700">query</span></span>
               </h3>
-              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><code>WHERE age &gt; 18 AND active = true</code> — combined conditions</li> <li><code>WHERE name LIKE 'A%'</code> — pattern match</li> <li><code>ORDER BY created_at DESC</code> — sort descending</li> <li><code>WHERE id IN (1, 2, 3)</code> — match set</li> </ul></div></div>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul>
+<li><code>WHERE age &gt; 18 AND active = true</code> — combined conditions</li>
+<li><code>WHERE name LIKE 'A%'</code> — pattern match</li>
+<li><code>ORDER BY created_at DESC</code> — sort descending</li>
+<li><code>WHERE id IN (1, 2, 3)</code> — match set</li>
+</ul>
+</div></div>
             </article>
           
             <article class="bg-white border border-gray-200 rounded-lg p-3">
               <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
                 Aggregation<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-orange-100 text-orange-700">query</span><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-amber-100 text-amber-700">advanced</span></span>
               </h3>
-              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><code>COUNT(*)</code>, <code>SUM(price)</code>, <code>AVG(score)</code> — aggregate functions</li> <li><code>GROUP BY category</code> — group results</li> <li><code>HAVING COUNT(*) &gt; 5</code> — filter groups</li> </ul></div></div>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul>
+<li><code>COUNT(*)</code>, <code>SUM(price)</code>, <code>AVG(score)</code> — aggregate functions</li>
+<li><code>GROUP BY category</code> — group results</li>
+<li><code>HAVING COUNT(*) &gt; 5</code> — filter groups</li>
+</ul>
+</div></div>
             </article>
           
         </section>
@@ -107,7 +129,13 @@ th {
               <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
                 Types<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-orange-100 text-orange-700">query</span><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-emerald-100 text-emerald-700">join</span></span>
               </h3>
-              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><code>INNER JOIN orders ON users.id = orders.user_id</code> — matching only</li> <li><code>LEFT JOIN orders ON users.id = orders.user_id</code> — all from left</li> <li><code>FULL OUTER JOIN</code> — all from both</li> <li><code>CROSS JOIN</code> — cartesian product</li> </ul></div></div>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul>
+<li><code>INNER JOIN orders ON users.id = orders.user_id</code> — matching only</li>
+<li><code>LEFT JOIN orders ON users.id = orders.user_id</code> — all from left</li>
+<li><code>FULL OUTER JOIN</code> — all from both</li>
+<li><code>CROSS JOIN</code> — cartesian product</li>
+</ul>
+</div></div>
             </article>
           
         </section>

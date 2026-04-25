@@ -143,17 +143,10 @@ export function parseCheatsheet(mdText: string): Cheatsheet {
       }
 
       if (currentCard) {
-        // Strip tags from rendered HTML by replacing them
-        let cleanedHtml = html;
-        for (const tag of allTags) {
-          cleanedHtml = cleanedHtml.replace(tag.raw, "");
-        }
-        // Clean up extra spaces
-        cleanedHtml = cleanedHtml.replace(/\s+/g, " ").trim();
         currentCard.blocks.push({
           type: "html",
-          html: cleanedHtml,
-          tags: allTags,
+          html,
+          tags: [],
         });
       }
     }
