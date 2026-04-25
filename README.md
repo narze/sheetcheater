@@ -16,20 +16,13 @@ A markdown-to-A4-cheatsheet generator. Write structured markdown, get a clean, p
 
 ## Quick Start
 
-### Dev Server (Recommended)
+### 1. Web App (No Install)
+
+Open [sheetcheater.narze.live](https://sheetcheater.narze.live), paste your markdown, and print to PDF.
+
+### 2. CLI
 
 ```bash
-bun install
-bun run dev
-```
-
-Open `http://localhost:5173`. Click **Edit** to open the split-pane editor.
-
-### Generate Static HTML
-
-```bash
-bun run src/cli.ts input.md output.html
-# or via npx
 npx sheetcheater input.md output.html
 ```
 
@@ -143,11 +136,6 @@ bun run preview
 
 # Format, lint, and type-check
 vp check
-
-# Generate cheatsheet HTML
-bun run src/cli.ts cheatsheet.md dist/cheatsheet.html
-# or via npx
-npx sheetcheater cheatsheet.md dist/cheatsheet.html
 ```
 
 ### Project Structure
