@@ -9,18 +9,30 @@
   body {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
+    overflow: visible !important;
   }
   .cheatsheet-page {
     box-shadow: none !important;
     margin: 0 !important;
     padding: 0 !important;
+    min-height: auto !important;
+    width: 100% !important;
+    overflow: visible !important;
   }
   .toolbar,
   .editor-pane {
     display: none !important;
   }
+  .workspace {
+    padding-top: 0 !important;
+    height: auto !important;
+  }
   .preview-pane {
     width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    background: white !important;
   }
 }
 
