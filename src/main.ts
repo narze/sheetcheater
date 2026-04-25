@@ -3,11 +3,21 @@ import { renderCheatsheet } from "./renderer.js";
 import "./style.css";
 import mdText from "../cheatsheet.md?raw";
 
-function loadAndRender(text: string) {
+const originalText = mdText;
+let editorText = originalText;
+let isEditMode = false;
+
+const app = document.querySelector<HTMLDivElement>("#app")!;
+const editorPane = document.getElementById("editor-pane")!;
+const previewPane = document.getElementById("preview-pane")!;
+const editor = document.getElementById("editor") as HTMLTextAreaElement;
+const editToggle = document.getElementById("edit-toggle")!;
+const resetBtn = document.getElementById("reset-btn")!;
+const dropHint = document.getElementById("drop-hint")!;
+
+function render(text: string) {
   const cheatsheet = parseCheatsheet(text);
-  const html = renderCheatsheet(cheatsheet);
-  const app = document.querySelector<HTMLDivElement>("#app")!;
-  app.innerHTML = html;
+  app.innerHTML = renderCheatsheet(cheatsheet);
   checkOverflow();
 }
 
@@ -26,12 +36,96 @@ function checkOverflow() {
   }
 }
 
-loadAndRender(mdText);
+function toggleEditMode() {
+  isEditMode = !isEditMode;
+  if (isEditMode) {
+    editor.value = editorText;
+    editorPane.style.display = "block";
+    previewPane.classList.add("with-editor");
+    editToggle.textContent = "Close";
+    resetBtn.style.display = "inline-block";
+    dropHint.textContent = "Editing in-memory — refresh page to restore file";
+    editor.focus();
+  } else {
+    editorPane.style.display = "none";
+    previewPane.classList.remove("with-editor");
+    editToggle.textContent = "Edit";
+    resetBtn.style.display = "none";
+    dropHint.textContent = "Drop a .md file anywhere to load it";
+  }
+}
+
+function resetToOriginal() {
+  editorText = originalText;
+  editor.value = editorText;
+  render(editorText);
+}
+
+let debounceTimer: ReturnType<typeof setTimeout>;
+function onEditorInput() {
+  editorText = editor.value;
+  clearTimeout(debounceTimer);
+  debounceTimer = setTimeout(() => {
+    render(editorText);
+  }, 100);
+}
+
+function handleDrop(e: DragEvent) {
+  e.preventDefault();
+  e.stopPropagation();
+
+  const files = e.dataTransfer?.files;
+  if (!files || files.length === 0) return;
+
+  const file = files[0];
+  if (!file.name.endsWith(".md")) {
+    alert("Please drop a .md file");
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = (event) => {
+    const text = event.target?.result as string;
+    if (text) {
+      editorText = text;
+      if (!isEditMode) {
+        toggleEditMode();
+      } else {
+        editor.value = editorText;
+      }
+      render(editorText);
+    }
+  };
+  reader.readAsText(file);
+}
+
+function setupDragAndDrop() {
+  document.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    document.body.classList.add("drag-over");
+  });
+  document.addEventListener("dragleave", (e) => {
+    e.preventDefault();
+    document.body.classList.remove("drag-over");
+  });
+  document.addEventListener("drop", (e) => {
+    document.body.classList.remove("drag-over");
+    handleDrop(e);
+  });
+}
+
+editToggle.addEventListener("click", toggleEditMode);
+resetBtn.addEventListener("click", resetToOriginal);
+editor.addEventListener("input", onEditorInput);
+
+render(originalText);
+setupDragAndDrop();
 
 if (import.meta.hot) {
   import.meta.hot.accept("../cheatsheet.md?raw", (newModule) => {
-    if (newModule) {
-      loadAndRender(newModule.default);
+    if (newModule && !isEditMode) {
+      editorText = newModule.default;
+      render(editorText);
     }
   });
 }

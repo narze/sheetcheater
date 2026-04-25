@@ -25,7 +25,22 @@
     >
       Warning: content exceeds one A4 page. Consider removing content.
     </div>
-    <div id="app"></div>
+
+    <div id="toolbar" class="toolbar">
+      <button id="edit-toggle" type="button">Edit</button>
+      <button id="reset-btn" type="button" style="display: none">Reset</button>
+      <span id="drop-hint" class="drop-hint">Drop a .md file anywhere to load it</span>
+    </div>
+
+    <div id="workspace" class="workspace">
+      <div id="editor-pane" class="editor-pane" style="display: none">
+        <textarea id="editor" class="editor" spellcheck="false"></textarea>
+      </div>
+      <div id="preview-pane" class="preview-pane">
+        <div id="app"></div>
+      </div>
+    </div>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
