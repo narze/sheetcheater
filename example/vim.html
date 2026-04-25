@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vim Cheatsheet</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+@page { size: A4; margin: 10mm; }
+@media print {
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .cheatsheet-page { box-shadow: none !important; margin: 0 !important; padding: 0 !important; }
+}
+.cheatsheet-page {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 10mm;
+  margin: 0 auto;
+  box-sizing: border-box;
+  background: white;
+}
+</style>
+</head>
+<body class="bg-gray-100">
+<div id="overflow-warning" style="display:none;position:fixed;top:0;left:0;right:0;background:#ef4444;color:white;text-align:center;padding:8px;font-size:14px;z-index:50;">
+  Warning: content exceeds one A4 page. Consider removing content.
+</div>
+
+    <div class="cheatsheet-page">
+      <header class="mb-4">
+        <h1 class="text-2xl font-bold text-gray-900">Vim Cheatsheet</h1>
+      </header>
+      <div class="grid grid-cols-3 gap-4">
+        <section class="flex flex-col gap-3">
+          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Movement</h2>
+          
+            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
+                Basic<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-indigo-100 text-indigo-700">normal</span><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-cyan-100 text-cyan-700">basics</span></span>
+              </h3>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><code>h j k l</code> — left, down, up, right</li> <li><code>w b e</code> — word forward, back, end</li> <li><code>0 ^ $</code> — start of line, first non-blank, end</li> <li><code>gg G</code> — top of file, bottom of file</li> </ul></div></div>
+            </article>
+          
+            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
+                Jumps<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-indigo-100 text-indigo-700">normal</span></span>
+              </h3>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><code>Ctrl+o Ctrl+i</code> — jump back, forward</li> <li><code>%</code> — matching bracket</li> <li><code>*</code> — search word under cursor</li> <li><code>n N</code> — next, previous match</li> </ul></div></div>
+            </article>
+          
+        </section>
+      
+        <section class="flex flex-col gap-3">
+          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Editing</h2>
+          
+            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
+                Insert & Change<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-green-100 text-green-700">insert</span></span>
+              </h3>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><code>i a</code> — insert before, after cursor</li> <li><code>I A</code> — insert at start, end of line</li> <li><code>o O</code> — new line below, above</li> <li><code>cc</code> — change whole line</li> </ul></div></div>
+            </article>
+          
+            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
+                Delete & Yank<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-indigo-100 text-indigo-700">normal</span></span>
+              </h3>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><code>dd</code> — delete line</li> <li><code>yy</code> — yank line</li> <li><code>p P</code> — paste after, before</li> <li><code>u Ctrl+r</code> — undo, redo</li> </ul></div></div>
+            </article>
+          
+        </section>
+      
+        <section class="flex flex-col gap-3">
+          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Search & Replace</h2>
+          
+            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
+                Commands<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-sky-100 text-sky-700">command</span></span>
+              </h3>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><code>:/pattern</code> — search forward</li> <li><code>:?pattern</code> — search backward</li> <li><code>:%s/old/new/g</code> — replace all in file</li> <li><code>:%s/old/new/gc</code> — replace with confirmation</li> </ul></div></div>
+            </article>
+          
+        </section>
+      </div>
+    </div>
+  
+<script>
+(function() {
+  function checkOverflow() {
+    const page = document.querySelector('.cheatsheet-page');
+    const warning = document.getElementById('overflow-warning');
+    if (!page || !warning) return;
+    const maxHeight = 1123; // ~A4 height at 96dpi
+    if (page.scrollHeight > maxHeight) {
+      warning.style.display = 'block';
+      console.warn('SheetCheater: Content exceeds one A4 page (' + page.scrollHeight + 'px > ' + maxHeight + 'px)');
+    } else {
+      warning.style.display = 'none';
+    }
+  }
+  window.addEventListener('load', checkOverflow);
+  window.addEventListener('resize', checkOverflow);
+})();
+</script>
+</body>
+</html>

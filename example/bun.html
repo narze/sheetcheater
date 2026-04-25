@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bun Cheatsheet</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+@page { size: A4; margin: 10mm; }
+@media print {
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .cheatsheet-page { box-shadow: none !important; margin: 0 !important; padding: 0 !important; }
+}
+.cheatsheet-page {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 10mm;
+  margin: 0 auto;
+  box-sizing: border-box;
+  background: white;
+}
+</style>
+</head>
+<body class="bg-gray-100">
+<div id="overflow-warning" style="display:none;position:fixed;top:0;left:0;right:0;background:#ef4444;color:white;text-align:center;padding:8px;font-size:14px;z-index:50;">
+  Warning: content exceeds one A4 page. Consider removing content.
+</div>
+
+    <div class="cheatsheet-page">
+      <header class="mb-4">
+        <h1 class="text-2xl font-bold text-gray-900">Bun Cheatsheet</h1>
+      </header>
+      <div class="grid grid-cols-3 gap-4">
+        <section class="flex flex-col gap-3">
+          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Scripts</h2>
+          
+            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
+                Run<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-sky-100 text-sky-700">cli</span><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-cyan-100 text-cyan-700">basics</span></span>
+              </h3>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><code>bun run dev</code> — run dev script from package.json</li> <li><code>bun run src/cli.ts</code> — run TypeScript directly</li> <li><code>bun --watch src/index.ts</code> — run with watch mode</li> <li><code>bun --hot src/index.ts</code> — hot reload</li> </ul></div></div>
+            </article>
+          
+            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
+                Install<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-sky-100 text-sky-700">cli</span></span>
+              </h3>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><code>bun install</code> — install dependencies</li> <li><code>bun add lodash</code> — add dependency</li> <li><code>bun add -d typescript</code> — add dev dependency</li> <li><code>bun remove lodash</code> — remove dependency</li> </ul></div></div>
+            </article>
+          
+        </section>
+      
+        <section class="flex flex-col gap-3">
+          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Testing</h2>
+          
+            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
+                Runner<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-purple-100 text-purple-700">test</span></span>
+              </h3>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><code>bun test</code> — run tests</li> <li><code>bun test --watch</code> — watch mode</li> <li><code>bun test file.test.ts</code> — single file</li> <li><code>bun test --coverage</code> — with coverage</li> </ul></div></div>
+            </article>
+          
+        </section>
+      
+        <section class="flex flex-col gap-3">
+          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Bundler</h2>
+          
+            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
+                Build<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-sky-100 text-sky-700">cli</span><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-sky-100 text-sky-700">build</span></span>
+              </h3>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><code>bun build src/index.ts --outdir dist</code> — bundle to directory</li> <li><code>bun build src/index.ts --outfile dist/bundle.js</code> — single file</li> <li><code>bun build --target node</code> — target Node.js</li> <li><code>bun build --target bun</code> — target Bun runtime</li> </ul></div></div>
+            </article>
+          
+            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
+                Flags<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-sky-100 text-sky-700">cli</span></span>
+              </h3>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><code>--minify</code> — minify output</li> <li><code>--splitting</code> — enable code splitting</li> <li><code>--sourcemap</code> — generate source maps</li> <li><code>--format esm</code> — ESM output</li> </ul></div></div>
+            </article>
+          
+        </section>
+      </div>
+    </div>
+  
+<script>
+(function() {
+  function checkOverflow() {
+    const page = document.querySelector('.cheatsheet-page');
+    const warning = document.getElementById('overflow-warning');
+    if (!page || !warning) return;
+    const maxHeight = 1123; // ~A4 height at 96dpi
+    if (page.scrollHeight > maxHeight) {
+      warning.style.display = 'block';
+      console.warn('SheetCheater: Content exceeds one A4 page (' + page.scrollHeight + 'px > ' + maxHeight + 'px)');
+    } else {
+      warning.style.display = 'none';
+    }
+  }
+  window.addEventListener('load', checkOverflow);
+  window.addEventListener('resize', checkOverflow);
+})();
+</script>
+</body>
+</html>

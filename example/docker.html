@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Docker Cheatsheet</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+@page { size: A4; margin: 10mm; }
+@media print {
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .cheatsheet-page { box-shadow: none !important; margin: 0 !important; padding: 0 !important; }
+}
+.cheatsheet-page {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 10mm;
+  margin: 0 auto;
+  box-sizing: border-box;
+  background: white;
+}
+</style>
+</head>
+<body class="bg-gray-100">
+<div id="overflow-warning" style="display:none;position:fixed;top:0;left:0;right:0;background:#ef4444;color:white;text-align:center;padding:8px;font-size:14px;z-index:50;">
+  Warning: content exceeds one A4 page. Consider removing content.
+</div>
+
+    <div class="cheatsheet-page">
+      <header class="mb-4">
+        <h1 class="text-2xl font-bold text-gray-900">Docker Cheatsheet</h1>
+      </header>
+      <div class="grid grid-cols-3 gap-4">
+        <section class="flex flex-col gap-3">
+          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Images</h2>
+          
+            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
+                Build & Tag<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-sky-100 text-sky-700">cli</span><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-green-100 text-green-700">image</span></span>
+              </h3>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><code>docker build -t myapp:latest .</code> — build image from Dockerfile</li> <li><code>docker tag myapp:latest myapp:v1</code> — tag an image</li> <li><code>docker rmi myapp:v1</code> — remove image</li> </ul></div></div>
+            </article>
+          
+            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
+                Inspect<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-sky-100 text-sky-700">cli</span></span>
+              </h3>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><code>docker images</code> — list local images</li> <li><code>docker inspect nginx</code> — detailed image info</li> <li><code>docker history nginx</code> — layer history</li> </ul></div></div>
+            </article>
+          
+        </section>
+      
+        <section class="flex flex-col gap-3">
+          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Containers</h2>
+          
+            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
+                Run & Stop<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-sky-100 text-sky-700">cli</span><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-fuchsia-100 text-fuchsia-700">container</span></span>
+              </h3>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><code>docker run -d -p 80:80 nginx</code> — run detached with port mapping</li> <li><code>docker stop &lt;id&gt;</code> — stop container</li> <li><code>docker rm &lt;id&gt;</code> — remove stopped container</li> <li><code>docker ps -a</code> — list all containers</li> </ul></div></div>
+            </article>
+          
+            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
+                Exec & Logs<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-sky-100 text-sky-700">cli</span></span>
+              </h3>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><code>docker exec -it &lt;id&gt; bash</code> — shell into running container</li> <li><code>docker logs -f &lt;id&gt;</code> — follow logs</li> <li><code>docker cp &lt;id&gt;:/app/file .</code> — copy file from container</li> </ul></div></div>
+            </article>
+          
+        </section>
+      
+        <section class="flex flex-col gap-3">
+          <h2 class="text-base font-bold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-1">Compose</h2>
+          
+            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
+                Lifecycle<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-sky-100 text-sky-700">cli</span><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-emerald-100 text-emerald-700">compose</span></span>
+              </h3>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><code>docker compose up -d</code> — start services in background</li> <li><code>docker compose down</code> — stop and remove</li> <li><code>docker compose build</code> — rebuild images</li> <li><code>docker compose logs -f</code> — follow all service logs</li> </ul></div></div>
+            </article>
+          
+            <article class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+              <h3 class="text-sm font-semibold text-gray-900 mb-2 flex items-center flex-wrap">
+                Shortcuts<span class="inline-flex gap-1 ml-1.5"><span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-sky-100 text-sky-700">cli</span></span>
+              </h3>
+              <div class="space-y-1"><div class="text-sm text-gray-700 leading-relaxed"><ul> <li><code>docker compose up --build</code> — build then start</li> <li><code>docker compose restart web</code> — restart single service</li> <li><code>docker compose exec db psql</code> — run command in service</li> </ul></div></div>
+            </article>
+          
+        </section>
+      </div>
+    </div>
+  
+<script>
+(function() {
+  function checkOverflow() {
+    const page = document.querySelector('.cheatsheet-page');
+    const warning = document.getElementById('overflow-warning');
+    if (!page || !warning) return;
+    const maxHeight = 1123; // ~A4 height at 96dpi
+    if (page.scrollHeight > maxHeight) {
+      warning.style.display = 'block';
+      console.warn('SheetCheater: Content exceeds one A4 page (' + page.scrollHeight + 'px > ' + maxHeight + 'px)');
+    } else {
+      warning.style.display = 'none';
+    }
+  }
+  window.addEventListener('load', checkOverflow);
+  window.addEventListener('resize', checkOverflow);
+})();
+</script>
+</body>
+</html>
