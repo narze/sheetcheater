@@ -67,6 +67,13 @@ body {
   background: #e5e7eb;
 }
 
+.toolbar-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+  margin-right: 4px;
+}
+
 .drop-hint {
   margin-left: auto;
   font-size: 12px;
