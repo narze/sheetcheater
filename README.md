@@ -149,6 +149,15 @@ sheetcheater/
 │   ├── cli.ts             # CLI entry (static HTML output)
 │   ├── types.ts           # Shared TypeScript interfaces
 │   └── style.css          # Tailwind + A4 print styles
+├── public/
+│   └── git.md             # Default cheatsheet (dev server)
+├── example/
+│   ├── git.md             # Example cheatsheets
+│   ├── docker.md
+│   ├── sql.md
+│   ├── vim.md
+│   ├── css-flexbox.md
+│   └── bun.md
 ├── docs/
 │   └── MARKDOWN_RULES.md  # Full markdown spec
 ├── .agents/skills/
